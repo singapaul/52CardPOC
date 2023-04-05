@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+import card from "../../assets/card.jpeg";
 
 const Card = ({ rank, suit }) => {
   const [show, setShow] = useState(false);
-
-  const text = show ? "FRONT" : "BACK";
 
   const onHandleClick = () => {
     setShow((show) => !show);
   };
 
-  const cardColor = suit === "red" ? "dark:bg-red-200" : "dark:bg-gray-800";
+  const cardColor =
+    suit === "red" && show == true
+      ? "dark:bg-red-200"
+      : suit === "black" && show == true
+      ? "dark:bg-gray-800"
+      : "dark:bg-grey-200";
 
   return (
     <div
@@ -20,9 +24,9 @@ const Card = ({ rank, suit }) => {
       )}
       onClick={onHandleClick}
     >
-      <p>{text}</p>
-      <p>{rank}</p>
-      <p>{suit}</p>
+      {show ? null : <image src={card} />}
+      {show ? <p>{suit}</p> : null}
+      {show ? <p>{rank}</p> : null}
     </div>
   );
 };

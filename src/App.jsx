@@ -24,11 +24,7 @@ function App() {
   return (
     <div className="App">
       <h1>26 pairs POC</h1>
-      <p className="text-red-500 mt-8">Hello world!</p>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
         <CardGrid>
           <Card />
           {deck.map((val) => {return <Card rank={val.rank} suit={val.suit}/>} )}

@@ -15,7 +15,9 @@ function App() {
   });
   const shuffleDeck = shuffle(deck);
   console.log(shuffleDeck);
-  
+
+
+
 
   const [count, setCount] = useState(0);
 
@@ -29,6 +31,7 @@ function App() {
         </button>
         <CardGrid>
           <Card />
+          {deck.map((val) => {return <Card rank={val.rank} suit={val.suit}/>} )}
         </CardGrid>
         {/* <p>
           Edit <code>src/App.jsx</code> and save to test HMR

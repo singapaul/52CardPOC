@@ -16,11 +16,6 @@ function App() {
   const shuffleDeck = shuffle(deck);
   console.log(shuffleDeck);
 
-
-
-
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
       <h1>26 pairs POC</h1>

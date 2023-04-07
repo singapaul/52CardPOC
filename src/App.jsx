@@ -13,7 +13,6 @@ const App = () => {
 
   useEffect(() => {
     let timerInterval;
-
     if (!gameOver && start == true) {
       timerInterval = setInterval(() => {
         setTimer((prevTimer) => prevTimer + 1);
@@ -46,7 +45,7 @@ const App = () => {
     if (matchedCards.length === cards.length) {
       // All cards matched, game over
       setGameOver(true);
-      setTimer(0);
+      setTimer(timer)
     }
   }, [matchedCards, cards]);
 
@@ -54,6 +53,7 @@ const App = () => {
     setFlippedCards([]);
     setMatchedCards([]);
     setGameOver(false);
+    setTimer(0)
   };
 
   return (

@@ -1,55 +1,72 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Card from "./Components/Card/Card";
-import CardGrid from "./Components/CardGrid/CardGrid";
 import { createDeck } from "./utils/createDeck";
 
-function App() {
-  const shuffleDeck = () => {
-    let newDeck = createDeck();
-    setDeck(newDeck);
-  };
-
-  const [deck, setDeck] = useState(createDeck());
+const App = () => {
+  const [cards, setDeck] = useState(createDeck());
   const [matchedCards, setMatchedCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
 
-  // Give each card a show/hide state
-  const showHide = () => {};
+  const handleCardClick = (card) => {
+    if (flippedCards.length === 0) {
+      setFlippedCards([card]);
+    } else if (flippedCards.length === 1) {
+      if (flippedCards[0].id === card.id) {
+        // Match found
+        setMatchedCards([...matchedCards, flippedCards[0], card]);
+        setFlippedCards([]);
+      } else {
+        // No match, flip cards back after a delay
+        setTimeout(() => {
+          setFlippedCards([]);
+        }, 1000);
+      }
+    }
+  };
 
-  const handleClick = (index) => {
-    // console.log(deck);
-    // console.log(index);
-    index.isFlipped = !index.isFlipped;
-    setDeck()
-    console.log(index)
-    // console.log(matchedCards);
-    // console.log(flippedCards);
+  useEffect(() => {
+    if (matchedCards.length === cards.length) {
+      // All cards matched, game over
+      setGameOver(true);
+    }
+  }, [matchedCards, cards]);
+
+  const resetGame = () => {
+    setFlippedCards([]);
+    setMatchedCards([]);
+    setGameOver(false);
   };
 
   return (
     <div className="App">
       <h1>26 pairs POC</h1>
-      <div className="card">
-        <button onClick={showHide}>Assign show/hide</button>
-        <button>selected card</button>
-        <button className="m-10" onClick={shuffleDeck}>
-          shuffle deck
-        </button>
-        <CardGrid>
-          {deck.map((card) => {
-            return (
-              <Card
-                key={card.rank.concat(card.suit).concat(Math.random())}
-                handleCardClick={handleClick}
-                card={card}
-              />
-            );
-          })}
-        </CardGrid>
+      <div>
+        {gameOver ? (
+          <div>
+            <h2>Congratulations! You've won!</h2>
+            <button onClick={resetGame}>Play Again</button>
+          </div>
+        ) : (
+          <div>
+            <h2>Matched Pairs: {matchedCards.length / 2}</h2>
+            <div className="grid grid-flow-row grid-cols-4 gap-3">
+              {cards.map((card) => (
+                <Card
+                  key={card.id}
+                  card={card}
+                  flipped={flippedCards.includes(card)}
+                  matched={matchedCards.includes(card)}
+                  onClick={handleCardClick}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default App;

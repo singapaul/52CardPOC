@@ -1,23 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import reactkooh from "../../assets/react.svg";
 import classNames from "classnames";
 
+const Card = ({ card, flipped, matched, onClick }) => {
+  const handleClick = () => {
+    if (!flipped && !matched) {
+      onClick(card);
+    } else {
+      console.log("card already flipped");
+    }
+  };
 
-const Card = ({ card, handleCardClick }) => {
-  const [show, setShow] = useState(false);
+  const classthing = `card ${flipped ? "flipped" : ""} ${
+    matched ? "matched" : ""
+  }`;
 
-useEffect(() => {setShow(!show)}, [])
+  const classthing2 = flipped ? "border-blue-400" : "border-green-400";
 
-  const cardColor = card.isFlipped ? "dark:bg-grey-200" : "dark:bg-gray-800"
   return (
     <div
-      onClick={() => handleCardClick(card)}
       className={classNames(
-        "h-28 w-16 p-1 border border-gray-200 rounded-lg shadow dark:border-gray-700",
-        cardColor
+        classthing,
+        classthing2,
+        "h-28 w-16 p-1 border border-gray-200 rounded-lg shadow dark:border-gray-700"
       )}
+      onClick={handleClick}
     >
-      {show ? <p>{card.suit}</p> : null}
-      {show ? <p>{card.rank}</p> : null}
+      {flipped || matched ? <img src={reactkooh} alt="card front" /> : null}
+      {flipped || matched ? (
+        <>
+          <p>{card.suit}</p>
+          <p>{card.rank}</p>
+        </>
+      ) : (
+        <>
+          <p>{card.suit}</p>
+          <p>{card.rank}</p>
+        </>
+      )}
     </div>
   );
 };

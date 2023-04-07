@@ -5,8 +5,9 @@ export const createDeck = () => {
   let deck = [];
   suits.forEach(function (suit) {
     cards.forEach(function (rank) {
-      deck.push({ suit: suit, rank: rank, isFlipped: false, id: suit + 1 });
+      deck.push({ suit: suit, rank: rank, isFlipped: false, id: suit + rank });
     });
   });
-  return shuffle(deck);
+  // return shuffle(deck);
+  return deck;
 };

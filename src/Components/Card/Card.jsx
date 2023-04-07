@@ -19,7 +19,7 @@ const Card = ({ rank, suit }) => {
   return (
     <div
       className={classNames(
-        "h-48 w-28 p-1 border border-gray-200 rounded-lg shadow dark:border-gray-700 m-4",
+        "h-28 w-16 p-1 border border-gray-200 rounded-lg shadow dark:border-gray-700",
         cardColor
       )}
       onClick={onHandleClick}

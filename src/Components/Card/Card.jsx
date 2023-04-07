@@ -22,22 +22,17 @@ const Card = ({ card, flipped, matched, onClick }) => {
       className={classNames(
         classthing,
         classthing2,
-        "h-28 w-16 p-1 border border-gray-200 rounded-lg shadow dark:border-gray-700"
+        "h-28 w-16 p-1 border border-gray-200 rounded-lg shadow dark:border-gray-700 flex justify-center content-center items-center"
       )}
       onClick={handleClick}
     >
-      {flipped || matched ? <img src={reactkooh} alt="card front" /> : null}
+      {flipped || matched ?  null: <img src={reactkooh} alt="card front" />}
       {flipped || matched ? (
         <>
           <p>{card.suit}</p>
           <p>{card.rank}</p>
         </>
-      ) : (
-        <>
-          <p>{card.suit}</p>
-          <p>{card.rank}</p>
-        </>
-      )}
+      ) : null}
     </div>
   );
 };

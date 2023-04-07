@@ -59,16 +59,15 @@ const App = () => {
   return (
     <div className="App">
       <h1>26 pairs POC</h1>
-      <h2>{timer} seconds</h2>
       <div>
         {gameOver ? (
           <div>
-            <h2>Congratulations! You've won!</h2>
+            <h2>Congratulations! You've won! in {timer} seconds</h2>
             <button onClick={resetGame}>Play Again</button>
           </div>
         ) : (
           <div>
-            <h2>Matched Pairs: {matchedCards.length / 2}</h2>
+            <h1 className="m-10">Matched Pairs: {matchedCards.length / 2}</h1>
             <div className="grid grid-flow-row grid-cols-4 gap-3">
               {cards.map((card) => (
                 <Card
@@ -83,6 +82,7 @@ const App = () => {
           </div>
         )}
       </div>
+      {!gameOver ? <h1 className="mt-6">{timer} seconds</h1> : null}
     </div>
   );
 };

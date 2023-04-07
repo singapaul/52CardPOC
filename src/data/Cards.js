@@ -1,3 +1,5 @@
+// export const cards = ["2", "3"];
+
 export const cards = [
   "2",
   "3",
@@ -13,4 +15,5 @@ export const cards = [
   "king",
   "ace",
 ];
+
 export const suits = ["red", "red"];

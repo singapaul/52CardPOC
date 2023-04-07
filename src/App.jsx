@@ -8,8 +8,24 @@ const App = () => {
   const [matchedCards, setMatchedCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
   const [gameOver, setGameOver] = useState(false);
+  const [start, setStart] = useState(false);
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    let timerInterval;
+
+    if (!gameOver && start == true) {
+      timerInterval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer + 1);
+      }, 1000);
+    }
+    return () => {
+      clearInterval(timerInterval);
+    };
+  }, [gameOver, start]);
 
   const handleCardClick = (card) => {
+    setStart(true);
     if (flippedCards.length === 0) {
       setFlippedCards([card]);
     } else if (flippedCards.length === 1) {
@@ -30,6 +46,7 @@ const App = () => {
     if (matchedCards.length === cards.length) {
       // All cards matched, game over
       setGameOver(true);
+      setTimer(0);
     }
   }, [matchedCards, cards]);
 
@@ -42,6 +59,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>26 pairs POC</h1>
+      <h2>{timer} seconds</h2>
       <div>
         {gameOver ? (
           <div>
@@ -54,7 +72,7 @@ const App = () => {
             <div className="grid grid-flow-row grid-cols-4 gap-3">
               {cards.map((card) => (
                 <Card
-                  key={card.id}
+                  key={card.id + Math.random()}
                   card={card}
                   flipped={flippedCards.includes(card)}
                   matched={matchedCards.includes(card)}

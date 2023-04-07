@@ -8,9 +8,9 @@ export const cards = [
   "8",
   "9",
   "10",
-  "Jack",
-  "Queen",
-  "King",
-  "Ace",
+  "jack",
+  "queen",
+  "king",
+  "ace",
 ];
-export const suits = ["red", "red", "black", "black"];
+export const suits = ["red", "red"];

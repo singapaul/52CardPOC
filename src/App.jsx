@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import Card from "./Components/Card/Card";
 import "./app.css";
-// import Pikachu from "./images/Pickachu.png";
 import ButterFree from "./images/ButterFree.png";
 import Firey from "./images/Charmander.png";
 import Squirtle from "./images/Squirtle.png";

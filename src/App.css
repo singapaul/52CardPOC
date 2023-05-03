@@ -1,42 +1,85 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.bold {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.App {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.App header {
+  position: relative;
+  width: 100%;
   text-align: center;
+  margin-bottom: 8px;
+}
+.App header > div {
+  font-size: 15px;
+  width: 324px;
+  text-align: center;
+  margin: 0 auto;
+}
+.App footer {
+  width: 360px;
+  position: relative;
+  margin: 0 auto;
+  padding: 10px 4px;
+  margin-top: 10px;
+}
+.App footer .score {
+  justify-content: center;
+  display: flex;
+}
+.App footer .score div {
+  padding: 8px;
+}
+.App footer .restart {
+  display: flex;
+  justify-content: center;
+}
+.App .container {
+  border: 1px solid #DEDEDE;
+  padding: 12px;
+  box-shadow: 0 0 4px 4px #DEDEDE;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  align-items: stretch;
+  gap: 1rem;
+  margin: 0 auto;
+  width: 360px;
+  height: 300px;
+  perspective: 100%;
+  max-width: 720px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* stopwatch stuff  */
+
+.stopwatch-time {
+  text-align: center;
+  /* color: #fff; */
+  font-size: 80px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.stopwatch-buttons {
+  display: flex;
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.stopwatch-buttons button {
+  margin: 20px;
+  border: none;
+  padding: 10px 30px;
+  cursor: pointer;
+  color: #fff;
 }
 
-.card {
-  padding: 2em;
+.stopwatch-buttons button:first-child {
+  background-color: green;
 }
 
-.read-the-docs {
-  color: #888;
+.stopwatch-buttons button:last-child {
+  background-color: red;
 }

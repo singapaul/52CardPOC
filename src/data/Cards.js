@@ -16,4 +16,4 @@ export const cards = [
   "ace",
 ];
 
-export const suits = ["red", "red"];
+export const suits = ["red", "black", "joker", "blue"];

@@ -28,12 +28,14 @@ const App = () => {
     if (flippedCards.length === 0) {
       setFlippedCards([card]);
     } else if (flippedCards.length === 1) {
+      console.log("1 CARD has been clicked");
       if (flippedCards[0].id === card.id) {
         // Match found
         setMatchedCards([...matchedCards, flippedCards[0], card]);
         setFlippedCards([]);
       } else {
         // No match, flip cards back after a delay
+        setFlippedCards([flippedCards[0], card]);
         setTimeout(() => {
           setFlippedCards([]);
         }, 1000);
@@ -41,11 +43,13 @@ const App = () => {
     }
   };
 
+
+
   useEffect(() => {
     if (matchedCards.length === cards.length) {
       // All cards matched, game over
       setGameOver(true);
-      setTimer(timer)
+      setTimer(timer);
     }
   }, [matchedCards, cards]);
 
@@ -53,7 +57,7 @@ const App = () => {
     setFlippedCards([]);
     setMatchedCards([]);
     setGameOver(false);
-    setTimer(0)
+    setTimer(0);
   };
 
   return (
@@ -68,7 +72,7 @@ const App = () => {
         ) : (
           <div>
             <h1 className="m-10">Matched Pairs: {matchedCards.length / 2}</h1>
-            <div className="grid grid-flow-row grid-cols-4 gap-3">
+            <div className="grid grid-flow-row grid-cols-6 gap-2">
               {cards.map((card) => (
                 <Card
                   key={card.id + Math.random()}

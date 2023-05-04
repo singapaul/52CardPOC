@@ -1,24 +1,24 @@
 .card {
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 80px;
   border-radius: 4px;
-  box-shadow: 2px 2px 4px 4px #DEDEDE;
+  box-shadow: 2px #DEDEDE;
+  border: 2px solid black;
   transition: 0.3s;
   transform-style: preserve-3d;
   position: relative;
   cursor: pointer;
 }
-.card .img {
-  max-width: 75%;
-  max-height: 75%;
-}
-.card .card-face {
+
+.card-face {
   backface-visibility: hidden;
   position: absolute;
   width: 100%;
   height: 100%;
-  height: 10px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 .card .card-face.card-back-face {
   transform: rotateY(180deg);
@@ -28,4 +28,9 @@
 }
 .card.is-inactive {
   opacity: 0;
+}
+
+.picture{
+  object-fit: cover;
+  max-height: 80%;
 }

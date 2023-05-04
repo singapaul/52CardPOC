@@ -5,6 +5,7 @@ import "./app.css";
 import { uniqueElementsArray } from "./data/Simpsons";
 import { shuffle } from "./utils/shuffle";
 import DialogComp from "./Components/Dialog/Dialog";
+import FlippableCard from "./Components/FlippableCard";
 
 export default function App() {
   const [cards, setCards] = useState(
@@ -140,7 +141,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <div className="container">
+      <div className="card_container">
         {cards.map((card, index) => {
           return (
             <Card
@@ -150,6 +151,7 @@ export default function App() {
               isDisabled={shouldDisableAllCards}
               isInactive={checkIsInactive(card)}
               isFlipped={checkIsFlipped(index)}
+              // isFlipped={true}
               onClick={handleCardClick}
             />
           );

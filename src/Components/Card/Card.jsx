@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import pokeball from "../../assets/images/Poké_Ball_icon.svg.png";
+import carl from "../../assets/images/Simpsons/Akira.png"
 
 import "./Card.css";
 

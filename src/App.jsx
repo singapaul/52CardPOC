@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Button } from "@material-ui/core";
 import Card from "./Components/Card/Card";
 import "./app.css";
-import { uniqueElementsArray } from "./data/Pokemon";
+import { uniqueElementsArray } from "./data/Simpsons";
 import { shuffle } from "./utils/shuffle";
 import DialogComp from "./Components/Dialog/Dialog";
 

@@ -1,6 +1,6 @@
 To do
 
-- Fix CSS styling w/ tailwind
+- Revert to using Tailwind. Fix Single Card and Fix Multiple Cards
 - Implement social share tools
 - integrate light/dark mode
 - integrate theming

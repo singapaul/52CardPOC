@@ -6,31 +6,15 @@
 }
 
 .card_container {
-  border: 1px solid #dedede;
-  padding: 12px;
-  box-shadow: 0 0 4px 4px #dedede;
+  padding: 80px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
   justify-items: center;
   align-items: stretch;
-  gap: 1rem;
+  /* gap: 1rem; */
   margin: 0 auto;
-  width: 360px;
-  height: 300px;
-  perspective: 100%;
   max-width: 720px;
 }
 
-/* stopwatch stuff  */
 
-.stopwatch-time {
-  text-align: center;
-  /* color: #fff; */
-  font-size: 80px;
-}
-
-.stopwatch-buttons {
-  display: flex;
-  justify-content: center;
-}

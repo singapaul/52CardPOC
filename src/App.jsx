@@ -141,22 +141,22 @@ export default function App() {
   return (
     <div className="App">
       <div className="card_container">
-        <div>
-          {cards.map((card, index) => {
-            return (
-              <Card
-                key={index}
-                card={card}
-                index={index}
-                isDisabled={shouldDisableAllCards}
-                isInactive={checkIsInactive(card)}
-                isFlipped={checkIsFlipped(index)}
-                // isFlipped={true}
-                onClick={handleCardClick}
-              />
-            );
-          })}
-        </div>
+      {/* <div className="grid grid-flow-row grid-cols-8 gap-2"> */}
+        {cards.map((card, index) => {
+          return (
+            <Card
+              key={index}
+              card={card}
+              index={index}
+              isDisabled={shouldDisableAllCards}
+              isInactive={checkIsInactive(card)}
+              isFlipped={checkIsFlipped(index)}
+              // isFlipped={true}
+              onClick={handleCardClick}
+            />
+          );
+        })}
+        {/* </div> */}
       </div>
 
       <div className="score">

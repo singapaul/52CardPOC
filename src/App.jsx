@@ -1,46 +1,10 @@
 import { useEffect, useState, useRef } from "react";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  Button,
-  DialogTitle,
-} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import Card from "./Components/Card/Card";
 import "./app.css";
-import ButterFree from "./images/ButterFree.png";
-import Firey from "./images/Charmander.png";
-import Squirtle from "./images/Squirtle.png";
-import Pidgetto from "./images/Pidgetto.png";
-import Bulbasaur from "./images/Bulbasaur.png";
+import { uniqueElementsArray } from "./data/Pokemon";
 import { shuffle } from "./utils/shuffle";
-
-const uniqueElementsArray = [
-  {
-    type: "Pikachu",
-  },
-  {
-    type: "ButterFree",
-    image: ButterFree,
-  },
-  {
-    type: "Charmander",
-    image: Firey,
-  },
-  {
-    type: "Squirtle",
-    image: Squirtle,
-  },
-  {
-    type: "Pidgetto",
-    image: Pidgetto,
-  },
-  {
-    type: "Bulbasaur",
-    image: Bulbasaur,
-  },
-];
+import DialogComp from "./Components/Dialog/Dialog";
 
 export default function App() {
   const [cards, setCards] = useState(
@@ -59,30 +23,12 @@ export default function App() {
   );
   const timeout = useRef(null);
 
-  useEffect(() => {
-    let intervalId;
-    if (isRunning) {
-      // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
-      intervalId = setInterval(() => setTime(time + 1), 10);
-    }
-    return () => clearInterval(intervalId);
-  }, [isRunning, time]);
+  const openAboutModal = () => {
+    setShowAboutModal(true);
+  };
 
-  // Hours calculation
-  const hours = Math.floor(time / 360000);
-
-  // Minutes calculation
-  const minutes = Math.floor((time % 360000) / 6000);
-
-  // Seconds calculation
-  const seconds = Math.floor((time % 6000) / 100);
-
-  // Milliseconds calculation
-  const milliseconds = time % 100;
-
-  // Method to start and stop timer
-  const startAndStop = () => {
-    setIsRunning(!isRunning);
+  const closeAboutModal = () => {
+    setShowAboutModal(false);
   };
 
   const startTimer = () => {
@@ -98,11 +44,27 @@ export default function App() {
     setTime(0);
   };
 
-  const disable = () => {
-    setShouldDisableAllCards(true);
+  // Minutes calculation
+  const minutes = Math.floor((time % 360000) / 6000);
+  // Seconds calculation
+  const seconds = Math.floor((time % 6000) / 100);
+  // Milliseconds calculation
+  const milliseconds = time % 100;
+
+  const checkIsInactive = (card) => {
+    return Boolean(clearedCards[card.type]);
   };
-  const enable = () => {
+
+  const handleRestart = () => {
+    setClearedCards({});
+    setOpenCards([]);
+    setShowModal(false);
+    setMoves(0);
+    stopTimer();
+    reset();
     setShouldDisableAllCards(false);
+    // set a shuffled deck of cards
+    setCards(shuffle(uniqueElementsArray.concat(uniqueElementsArray)));
   };
 
   const checkCompletion = () => {
@@ -131,7 +93,6 @@ export default function App() {
   };
 
   const handleCardClick = (index) => {
-    console.log("clicked a card");
     startTimer();
     if (openCards.length === 1) {
       setOpenCards((prev) => [...prev, index]);
@@ -161,37 +122,24 @@ export default function App() {
     return openCards.includes(index);
   };
 
-  const checkIsInactive = (card) => {
-    return Boolean(clearedCards[card.type]);
+  useEffect(() => {
+    let intervalId;
+    if (isRunning) {
+      // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
+      intervalId = setInterval(() => setTime(time + 1), 10);
+    }
+    return () => clearInterval(intervalId);
+  }, [isRunning, time]);
+
+  const disable = () => {
+    setShouldDisableAllCards(true);
   };
-
-const openAboutModal = () => {
-setShowAboutModal(true)
-}
-
-const closeAboutModal = () => {
-setShowAboutModal(false)
-}
-
-
-  const handleRestart = () => {
-    setClearedCards({});
-    setOpenCards([]);
-    setShowModal(false);
-    setMoves(0);
-    stopTimer();
-    reset();
+  const enable = () => {
     setShouldDisableAllCards(false);
-    // set a shuffled deck of cards
-    setCards(shuffleCards(uniqueElementsArray.concat(uniqueElementsArray)));
   };
 
   return (
     <div className="App">
-      <header>
-        <h3>Play the Flip card game</h3>
- 
-      </header>
       <div className="container">
         {cards.map((card, index) => {
           return (
@@ -207,84 +155,60 @@ setShowAboutModal(false)
           );
         })}
       </div>
-      <footer>
-        <div className="score">
-          <div className="moves">
-            <span className="bold">Moves:</span> {moves}
-          </div>
-          <div className="moves">
-            <div className="bold">
-              Time: {minutes.toString().padStart(2, "0")}:
-              {seconds.toString().padStart(2, "0")}:
-              {milliseconds.toString().padStart(2, "0")}
-            </div>
-          </div>
-          {localStorage.getItem("bestScore") && (
-            <div className="high-score">
-              <span className="bold">Best Score:</span> {bestScore}
-            </div>
-          )}
+
+      <div className="score">
+        <div className="moves">
+          <span className="bold">Moves:</span> {moves}
         </div>
-        <div className="restart">
-          <Button onClick={openAboutModal} color="primary" variant="contained">
-            About
-          </Button>
-        </div>
-        <div className="restart">
-          <Button onClick={handleRestart} color="primary" variant="contained">
-            Restart
-          </Button>
-        </div>
-      </footer>
-      {/* Completed game screen */}
-      <Dialog
-        open={showModal}
-        disableBackdropClick
-        disableEscapeKeyDown
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          You completed the challenge
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            You completed the game in {moves} moves. Your best score is{" "}
-            {bestScore} moves and in {minutes.toString().padStart(2, "0")}:
+        <div className="moves">
+          <div className="bold">
+            Time: {minutes.toString().padStart(2, "0")}:
             {seconds.toString().padStart(2, "0")}:
             {milliseconds.toString().padStart(2, "0")}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleRestart} color="primary">
-            Restart
-          </Button>
-        </DialogActions>
-      </Dialog>
-      {/* About the game screen */}
-      <Dialog
-        open={showAboutModal}
-        disableBackdropClick
-        disableEscapeKeyDown
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-         About the game! 
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-          <div>
-          Select two cards with same content consequtively to make them vanish. Race the clock and beat your friends
+          </div>
         </div>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closeAboutModal} color="primary">
-            Close 
-          </Button>
-        </DialogActions>
-      </Dialog>
+        {localStorage.getItem("bestScore") && (
+          <div className="high-score">
+            <span className="bold">Best Score:</span> {bestScore}
+          </div>
+        )}
+      </div>
+      <div className="restart">
+        <Button onClick={openAboutModal} color="primary" variant="contained">
+          About
+        </Button>
+      </div>
+      <div className="restart">
+        <Button onClick={handleRestart} color="primary" variant="contained">
+          Restart
+        </Button>
+      </div>
+
+      <DialogComp
+        title={"About the game!"}
+        showModal={showAboutModal}
+        buttonLabel={"Close"}
+        buttonAction={closeAboutModal}
+      >
+        <div>
+          <p>
+            Select two cards with same content consequtively to make them
+            vanish. Race the clock and beat your friends
+          </p>
+        </div>
+      </DialogComp>
+
+      <DialogComp
+        title="You completed the challenge"
+        showModal={showModal}
+        buttonLabel={"restart"}
+        buttonAction={handleRestart}
+      >
+        You completed the game in {moves} moves. Your best score is {bestScore}{" "}
+        moves and in {minutes.toString().padStart(2, "0")}:
+        {seconds.toString().padStart(2, "0")}:
+        {milliseconds.toString().padStart(2, "0")}
+      </DialogComp>
     </div>
   );
 }

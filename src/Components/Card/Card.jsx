@@ -1,5 +1,6 @@
 import classnames from "classnames";
-import pokeball from "../../images/Poké_Ball_icon.svg.png"
+import pokeball from "../../assets/images/Poké_Ball_icon.svg.png";
+
 import "./Card.css";
 
 const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
@@ -11,7 +12,7 @@ const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
     <div
       className={classnames("card", {
         "is-flipped": isFlipped,
-        "is-inactive": isInactive
+        "is-inactive": isInactive,
       })}
       onClick={handleClick}
     >
@@ -25,5 +26,4 @@ const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
   );
 };
 
-export default Card
-
+export default Card;

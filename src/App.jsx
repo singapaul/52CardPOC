@@ -4,6 +4,8 @@ import Card from "./Components/Card/Card";
 import { uniqueElementsArray } from "./data/Simpsons";
 import { shuffle } from "./utils/shuffle";
 import DialogComp from "./Components/Dialog/Dialog";
+import { Footer } from "./Components/Footer/Footer";
+import { Header } from "./Components/Header/Header";
 
 export default function App() {
   const [cards, setCards] = useState(
@@ -139,6 +141,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col align items-center">
+      <Header/>
       <section>
         <div className="grid grid-flow-row grid-cols-4 p-4 gap-2 justify-items-center sm:grid-cols-8 max-w-5xl">
           {cards.map((card, index) => {
@@ -213,6 +216,7 @@ export default function App() {
         {seconds.toString().padStart(2, "0")}:
         {milliseconds.toString().padStart(2, "0")}
       </DialogComp>
+      <Footer />
     </div>
   );
 }

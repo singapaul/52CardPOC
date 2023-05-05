@@ -8,6 +8,7 @@ To do
 - integrate light/dark mode
 - integrate theming
 - integrate CMS
+- a difficulty mode?
 - create rules page
 - Fix Single Card styling - DONE
 - Move to components structure - DONE

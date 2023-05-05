@@ -7,6 +7,7 @@ To do
 - Implement social share tools
 - integrate light/dark mode
 - integrate theming
+- build in next & typescript
 - integrate CMS
 - a difficulty mode?
 - create rules page

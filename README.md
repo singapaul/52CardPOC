@@ -1,6 +1,8 @@
 To do
 
 - fix the grid, including aligning the bottom cards to the center
+- header component
+- footer component
 - Revert to using Tailwind. Fix Single Card and Fix Multiple Cards
 - Implement social share tools
 - integrate light/dark mode

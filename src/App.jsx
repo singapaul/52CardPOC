@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Button } from "@material-ui/core";
 import Card from "./Components/Card/Card";
-import "./app.css";
 import { uniqueElementsArray } from "./data/Simpsons";
 import { shuffle } from "./utils/shuffle";
 import DialogComp from "./Components/Dialog/Dialog";
@@ -139,53 +138,55 @@ export default function App() {
   };
 
   return (
-    <div className="App">
-      <div className="card_container">
-      {/* <div className="grid grid-flow-row grid-cols-8 gap-2"> */}
-        {cards.map((card, index) => {
-          return (
-            <Card
-              key={index}
-              card={card}
-              index={index}
-              isDisabled={shouldDisableAllCards}
-              isInactive={checkIsInactive(card)}
-              isFlipped={checkIsFlipped(index)}
-              // isFlipped={true}
-              onClick={handleCardClick}
-            />
-          );
-        })}
-        {/* </div> */}
-      </div>
-
-      <div className="score">
-        <div className="moves">
-          <span className="bold">Moves:</span> {moves}
+    <div className="flex flex-col align items-center">
+      <section>
+        <div className="grid grid-flow-row grid-cols-4 p-4 gap-2 justify-items-center sm:grid-cols-8 max-w-5xl">
+          {cards.map((card, index) => {
+            return (
+              <Card
+                key={index}
+                card={card}
+                index={index}
+                isDisabled={shouldDisableAllCards}
+                isInactive={checkIsInactive(card)}
+                isFlipped={checkIsFlipped(index)}
+                onClick={handleCardClick}
+              />
+            );
+          })}
+        </div>
+      </section>
+      {/* Stats */}
+      <div className="flex gap-8 m-8">
+        <div className="font-mono text-xl font-bolds">
+          <span className="font-mono text-xl font-bold">Moves:</span> {moves}
         </div>
         <div className="moves">
-          <div className="bold">
+          <div className="font-mono text-xl font-bold">
             Time: {minutes.toString().padStart(2, "0")}:
             {seconds.toString().padStart(2, "0")}:
             {milliseconds.toString().padStart(2, "0")}
           </div>
         </div>
         {localStorage.getItem("bestScore") && (
-          <div className="high-score">
+          <div className="font-mono text-xl font-bold">
             <span className="bold">Best Score:</span> {bestScore}
           </div>
         )}
       </div>
-      <div className="restart">
-        <Button onClick={openAboutModal} color="primary" variant="contained">
-          About
-        </Button>
-      </div>
-      <div className="restart">
-        <Button onClick={handleRestart} color="primary" variant="contained">
-          Restart
-        </Button>
-      </div>
+      {/* Stats */}
+      <section className="flex mt-5 gap-8">
+        <div className="restart">
+          <Button onClick={openAboutModal} color="primary" variant="contained">
+            About
+          </Button>
+        </div>
+        <div className="restart">
+          <Button onClick={handleRestart} color="primary" variant="contained">
+            Restart
+          </Button>
+        </div>
+      </section>
 
       <DialogComp
         title={"About the game!"}

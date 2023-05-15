@@ -143,7 +143,7 @@ export default function App() {
     <div className="flex flex-col align items-center">
       <Header/>
       <section>
-        <div className="grid grid-flow-row grid-cols-4 p-4 gap-2 justify-items-center sm:grid-cols-8 max-w-5xl">
+        <div className="grid grid-flow-row grid-cols-6 p-4 gap-2 justify-items-center sm:grid-cols-8 max-w-5xl">
           {cards.map((card, index) => {
             return (
               <Card

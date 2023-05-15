@@ -3,14 +3,17 @@ To do
 - fix the grid, including aligning the bottom cards to the center
 - header component
 - footer component
-- Revert to using Tailwind. Fix Single Card and Fix Multiple Cards
-- Implement social share tools
+- Revert to using Tailwind. 1) Fix Single Card and 2) Fix Multiple Cards
+- Implement social share tools on toast
 - integrate light/dark mode
 - integrate theming
 - build in next & typescript
 - integrate CMS
 - a difficulty mode?
 - create rules page
+
+Completed BackLog
+
 - Fix Single Card styling - DONE
 - Move to components structure - DONE
 - add flipping animations - DONE

@@ -141,7 +141,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col align items-center">
-      <Header/>
+      <Header />
       <section>
         <div className="grid grid-flow-row grid-cols-6 p-4 gap-2 justify-items-center sm:grid-cols-8 max-w-5xl">
           {cards.map((card, index) => {
@@ -211,10 +211,11 @@ export default function App() {
         buttonLabel={"restart"}
         buttonAction={handleRestart}
       >
-        You completed the game in {moves} moves. Your best score is {bestScore}{" "}
-        moves and in {minutes.toString().padStart(2, "0")}:
+        You completed the game in {moves} moves and in{" "}
+        {minutes.toString().padStart(2, "0")}:
         {seconds.toString().padStart(2, "0")}:
-        {milliseconds.toString().padStart(2, "0")}
+        {milliseconds.toString().padStart(2, "0")}.
+        Your best score is {bestScore} moves.
       </DialogComp>
       <Footer />
     </div>

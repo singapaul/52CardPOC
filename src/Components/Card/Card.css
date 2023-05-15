@@ -30,6 +30,11 @@
   opacity: 0;
 }
 
-.picture{
+.picture-front{
+  object-fit: cover;
+  max-height: 80%;
+}
+
+.picture-back{
   object-fit: cover;
 }

@@ -18,10 +18,10 @@ const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
       onClick={handleClick}
     >
       <div className="card-face card-font-face">
-        <img src={back} alt="pokeball" className="picture"  />
+        <img src={back} alt="pokeball" className="picture-back"  />
       </div>
       <div className="card-face card-back-face">
-        <img src={card.image} className="picture" alt="pokeball"  />
+        <img src={card.image} className="picture-front" alt="pokeball"  />
       </div>
     </div>
   );

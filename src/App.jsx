@@ -192,7 +192,7 @@ export default function App() {
       </section>
 
       <DialogComp
-        title={"About the game!"}
+        title={"About"}
         showModal={showAboutModal}
         buttonLabel={"Close"}
         buttonAction={closeAboutModal}
@@ -200,7 +200,7 @@ export default function App() {
         <div>
           <p>
             Select two cards with same content consequtively to make them
-            vanish. Race the clock and beat your friends
+            vanish. Race the clock and beat your friends!
           </p>
         </div>
       </DialogComp>

@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import pokeball from "../../assets/images/Poké_Ball_icon.svg.png";
+import back from "../../assets/images/Simpsons/backcard.jpeg"
 
 import "./Card.css";
 
@@ -17,7 +18,7 @@ const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
       onClick={handleClick}
     >
       <div className="card-face card-font-face">
-        <img src={pokeball} alt="pokeball" className="picture"  />
+        <img src={back} alt="pokeball" className="picture"  />
       </div>
       <div className="card-face card-back-face">
         <img src={card.image} className="picture" alt="pokeball"  />

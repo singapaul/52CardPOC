@@ -25,3 +25,7 @@ Completed BackLog
 Nice to haves:
 
 - Add animations e.g. dealing animation, loading animation
+
+Notes:
+
+Use 1st party vercel plug in to handle analytics: https://vercel.com/analytics

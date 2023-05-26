@@ -1,8 +1,8 @@
 To do
 
+- rebuild using Gatsby
+- integrate vercel web analytics
 - fix the grid, including aligning the bottom cards to the center
-- header component
-- footer component
 - Revert to using Tailwind. 1) Fix Single Card and 2) Fix Multiple Cards
 - Implement social share tools on toast
 - integrate light/dark mode
@@ -11,6 +11,9 @@ To do
 - integrate CMS
 - a difficulty mode?
 - create rules page
+- Theming will be done with this: https://www.youtube.com/watch?v=MAtaT8BZEAo&ab_channel=TailwindLabs
+- dark mode will be acheived using the same plug in as on wordy
+- styling done with tailwind
 
 Completed BackLog
 
@@ -25,3 +28,9 @@ Completed BackLog
 Nice to haves:
 
 - Add animations e.g. dealing animation, loading animation
+- header component
+- footer component
+
+Notes:
+
+Use 1st party vercel plug in to handle analytics: https://vercel.com/analytics
